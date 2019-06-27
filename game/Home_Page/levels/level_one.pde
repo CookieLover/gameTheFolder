@@ -1,4 +1,4 @@
-/* @pjs preload="../../assets/ninja/ninjaStanding.png", "../../assets/ninja/ninjaJump.png","../../assets/ninja/ninjaL5.png","../../assets/ninja/ninjaL4.png", "../../assets/ninja/ninjaL3.png", "../../assets/ninja/ninjaL2.png", "../../assets/ninja/ninjaL1.png","../../assets/background/1stLevelBackground.png", "../../assets/ninja/ninjaR5.png", "../../assets/ninja/ninjaR4.png", "../../assets/ninja/ninjaR3.png", "../../assets/ninja/ninjaR2.png", "../../assets/ninja/ninjaR1.png"; */
+/* @pjs preload="../../assets/platform.png", "../../assets/ninja/ninjaStanding.png", "../../assets/ninja/ninjaJump.png","../../assets/ninja/ninjaL5.png","../../assets/ninja/ninjaL4.png", "../../assets/ninja/ninjaL3.png", "../../assets/ninja/ninjaL2.png", "../../assets/ninja/ninjaL1.png","../../assets/background/1stLevelBackground.png", "../../assets/ninja/ninjaR5.png", "../../assets/ninja/ninjaR4.png", "../../assets/ninja/ninjaR3.png", "../../assets/ninja/ninjaR2.png", "../../assets/ninja/ninjaR1.png"; */
 var FLOOR;
 var platforms = new Array();
 PImage bg;
@@ -26,14 +26,13 @@ void setup() {
   playerJump = loadImage("../../assets/ninja/ninjaJump.png");
   playerIdle = loadImage("../../assets/ninja/ninjaStanding.png");
 
+
   FLOOR = SCREEN_HEIGHT;
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   fill(0, 0, 0);
   player = new Player(playerRight, playerLeft, playerJump, playerIdle, 10, FLOOR);
-  platforms.push(new Platform(400, 500, 137, 27));
+  platforms.push(new Platform(400, 500, loadImage("../../assets/platform.png")));
   bg = loadImage("../../assets/background/1stLevelBackground.png");
-
-  //console.log(FLOOR);
 }
 
 void draw() {

@@ -159,8 +159,10 @@ function PlatformMovement(thisPlatform) {
 }
 
 // Platforms
-function Platform(x, y, width, height) {
-  GameObject.call(this, x, y, width, height);
+function Platform(x, y, platPic) {
+  GameObject.call(this, x, y, platPic.width, platPic.height);
+
+  this.platPic = platPic;
 
   this.playerIsOnPlatform = function () {
     if ((isCollide(player, this)) && ((this.top() <= player.bottom()) && (player.bottom() <= this.bottom()))) {
@@ -175,7 +177,7 @@ function Platform(x, y, width, height) {
   this.movePixels = new PlatformMovement(this);
 
   this.draw = function () {
-    rect(this.x, this.y, this.width, this.height);
+    image(this.platPic, this.x, this.y);
   }
 
 }
