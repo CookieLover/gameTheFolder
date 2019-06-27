@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Animation 2</title>
+  <script src="processing.min.js"></script>
+
+  <script>
+    var manX = 100;
+    var manY = 100;
+    var posChange = true;
+	var jumps = false;
+
+    document.onkeydown = checkKeycode;
+
+    function checkKeycode(event) {
+      var keyDownEvent = event || window.event,
+          keycode = (keyDownEvent.which) ? keyDownEvent.which : keyDownEvent.keyCode;
+
+      print_arrow_key(keycode);
+
+      return false;
+  }
+
+  function print_arrow_key(keyCodeNumber) {
+      var LEFT = 37,
+          RIGHT = 39,
+		  SPACE = 32;
+
+      switch (keyCodeNumber) {
+      case LEFT:
+          if (manX > 0) {
+            manX -= 5;
+            posChange = true;
+          }
+          break;
+      case RIGHT:
+          if (manX < 100) {
+            manX += 5;
+            posChange = true;
+          }
+          break;
+	  case SPACE:
+	  console.log("SPACE");
+	   jumps = true;
+          break;
+      default:
+          break;
+      }
+  }
+  </script>
+</head>
+
+<body>
+  <h1>Animation Test 2</h1>
+  <p>Moving: Click on the man, then try the arrow keys</p>
+  <canvas data-processing-sources="animation2.pde"></canvas>
+
+</body>
+</html>
