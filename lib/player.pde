@@ -28,7 +28,7 @@ function Player(rightImages, leftImages, jumpImage, idleImage, x, y) {
   GameObject.call(this, x, y - this.rightImages[0].height,
     this.rightImages[0].width, this.rightImages[0].height);
 
-  this.playerMovement = new playerMovement(7);
+  this.playerMovement = new playerMovement(5);
   this.jump = new Jump(5, 35, 0);
   this.pImage = this.rightImages[0];
   this.framesLeft = 0;
