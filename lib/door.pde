@@ -7,9 +7,9 @@ function Door(x, y, width, height) {
 Door.prototype = Object.create(GameObject.prototype);
 
 //If player collides with door, change game state to Win
-function doorCollision() {
+function doorCollision(nextLevel) {
   if (isCollide(player, door)) {
     currGameState = gameStates.LEVEL_END;
-    location.assign("nextLevelTest.html");
+    location.assign(nextLevel);
   }
 }
