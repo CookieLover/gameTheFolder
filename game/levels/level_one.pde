@@ -15,7 +15,6 @@
 "../../assets/platforms/plat2.png",
 "../../assets/platforms/plat3.png",
 "../../assets/platforms/plat4.png",
-"../../assets/platforms/plat5.png",
 "../../assets/objects/spike.png",
 "../../assets/objects/portal.png"; */
 
@@ -41,11 +40,12 @@ void setup() {
   platforms.push(new Platform(510, 416, loadImage("../../assets/platforms/plat2.png")));
   platforms.push(new Platform(564, 541, loadImage("../../assets/platforms/plat3.png")));
   platforms.push(new Platform(0, 539, loadImage("../../assets/platforms/plat4.png")));
-  platforms.push(new Platform(251, 538, loadImage("../../assets/platforms/plat5.png")));
+  platforms.push(new Platform(251, 538, loadImage("../../assets/platforms/plat4.png")));
 
 // objects
   objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 177, FLOOR));
-  objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 504, FLOOR));
+  objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 495, FLOOR));
+  objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 425, FLOOR));
   objects.push(new Door(loadImage("../../assets/objects/portal.png"), 683, 298, "level_two.html"));
 
 //Player Right Images
