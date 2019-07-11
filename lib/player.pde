@@ -155,11 +155,11 @@ function calculateJump() {
 
 //All player movement
 function calculatePlayerMovement() {
-    if ((player.playerMovement.movingLeft) && (player.x >= MARGIN)) {
+    if ((player.playerMovement.movingLeft) && (player.x >= LEFT_MARGIN)) {
       player.x -= player.playerMovement.moveSpeed;
     }
 
-    if ((player.playerMovement.movingRight) && (player.right() < SCREEN_WIDTH - MARGIN)) {
+    if ((player.playerMovement.movingRight) && (player.right() < SCREEN_WIDTH - RIGHT_MARGIN)) {
       player.x += player.playerMovement.moveSpeed;
     }
 }
