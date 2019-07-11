@@ -1,4 +1,3 @@
-
 // Platform movement functions
 function PlatformMovement(thisPlatform) {
 
