@@ -11,7 +11,7 @@
 "../../assets/ninja/ninjaR3.png",
 "../../assets/ninja/ninjaR2.png",
 "../../assets/ninja/ninjaR1.png",
-"../../assets/spike.png"; */
+"../../assets/objects/spike.png"; */
 var FLOOR;
 var platforms = new Array();
 PImage bg;
@@ -47,7 +47,7 @@ void setup() {
   player = new Player(playerRight, playerLeft, playerJump, playerIdle, 10, FLOOR);
   platforms.push(new Platform(400, 500, 137, 27));
   bg = loadImage("../../assets/background/1stLevelBackground.png");
-  spikes = new Spikes(loadImage("../../assets/spike.png"), 100, FLOOR);
+  spikes = new Spikes(loadImage("../../assets/objects/spike.png"), 100, FLOOR);
 
   //console.log(FLOOR);
 }
