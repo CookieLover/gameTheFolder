@@ -1,8 +1,9 @@
 var GRAVITY_STEP = 5;
 var SCREEN_WIDTH = 800;
 var SCREEN_HEIGHT = 600;
-var MARGIN = 10;
-var FLOOR;
+var LEFT_MARGIN = 10;
+var RIGHT_MARGIN = 10;
+var FLOOR = SCREEN_HEIGHT;
 
 //Not sure if we need a pause statement. If we don't, then this should be change to true/false.
 var gameStates = {

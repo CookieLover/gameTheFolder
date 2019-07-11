@@ -1,4 +1,3 @@
-
 // Platform movement functions
 function PlatformMovement(thisPlatform) {
 
@@ -160,6 +159,7 @@ function PlatformMovement(thisPlatform) {
 
 // Platforms
 function Platform(x, y, platPic) {
+
   GameObject.call(this, x, y, platPic.width, platPic.height);
 
   this.platPic = platPic;
@@ -232,14 +232,14 @@ function calculatePlatform(platform) {
     // If player bumps from the left
     if (player.midX() < platform.midX()) {
       var startX = player.x
-      if (player.x > MARGIN) {
+      if (player.x > LEFT_MARGIN) {
           player.x = player.x - player.playerMovement.moveSpeed;
       }
       return
     } else {
       // If player bumps from the right
       var startX = player.x
-      if (player.right() < SCREEN_WIDTH - MARGIN) {
+      if (player.right() < SCREEN_WIDTH - RIGHT_MARGIN) {
           player.x = player.x + player.playerMovement.moveSpeed;
       }
     }
