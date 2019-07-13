@@ -32,21 +32,20 @@ void setup() {
 // setup canvas
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   fill(0, 0, 0);
-  RIGHT_MARGIN = 105
-  bg = loadImage("../../assets/backgrounds/level1_without_plat.png");
+  bg = loadImage("../../assets/backgrounds/xuanBackground.png");
 
 // platforms
-  platforms.push(new Platform(646, 350, loadImage("../../assets/platforms/plat1.png")));
-  platforms.push(new Platform(510, 471, loadImage("../../assets/platforms/plat2.png")));
-  platforms.push(new Platform(564, FLOOR, loadImage("../../assets/platforms/plat3.png")));
-  platforms.push(new Platform(0, FLOOR, loadImage("../../assets/platforms/plat4.png")));
-  platforms.push(new Platform(251, FLOOR, loadImage("../../assets/platforms/plat4.png")));
+  platforms.push(new Platform(100, FLOOR, loadImage("../../assets/platforms/plat4.png")));
+  platforms.push(new Platform(263, FLOOR - 61, loadImage("../../assets/platforms/plat1.png")));
+  platforms.push(new Platform(317, FLOOR - 113, loadImage("../../assets/platforms/plat3.png")));
+  platforms.push(new Platform(453, FLOOR - 172, loadImage("../../assets/platforms/plat1.png")));
+  platforms.push(new Platform(507, FLOOR - 224, loadImage("../../assets/platforms/plat3.png")));
 
 // objects
-  objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 177, FLOOR));
-  objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 495, FLOOR));
-  objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 425, FLOOR));
-  objects.push(new Door(loadImage("../../assets/objects/portal.png"), 683, 298, "level_two.html"));
+  objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 530, FLOOR));
+  objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 610, FLOOR));
+  objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 720, FLOOR));
+  objects.push(new Door(loadImage("../../assets/objects/portal.png"), 683, FLOOR, "level_two.html"));
 
 //Player Right Images
   playerRight[0] = loadImage("../../assets/characters/ninja/ninjaR1.png");

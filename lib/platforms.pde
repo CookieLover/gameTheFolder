@@ -160,7 +160,7 @@ function PlatformMovement(thisPlatform) {
 // Platforms
 function Platform(x, y, platPic) {
 
-  GameObject.call(this, x, y, platPic.width, platPic.height);
+  GameObject.call(this, x, y - platPic.height, platPic.width, platPic.height);
 
   this.platPic = platPic;
 
