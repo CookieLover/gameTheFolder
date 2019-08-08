@@ -7,15 +7,11 @@ var FLOOR = SCREEN_HEIGHT;
 
 //Not sure if we need a pause statement. If we don't, then this should be change to true/false.
 var gameStates = {
-  LEVEL_END: 1,
-  LOSS: 2,
-  PAUSE: 3,
-  START: 4,
-  END: 5,
-  PLAYING: 6
-}
+  START: "start",
+  PLAYING: "playing"
+};
 
-var currGameState = gameStates.START;
+var gameState = gameStates.START;
 
 //Gravity
 function calculateGravity() {

@@ -1,6 +1,7 @@
 /* @pjs preload=
 "../../assets/characters/ninja/ninjaStanding.png",
 "../../assets/characters/ninja/ninjaJump.png",
+"../../assets/characters/ninja/deadNinja.png",
 "../../assets/characters/ninja/ninjaL5.png",
 "../../assets/characters/ninja/ninjaL4.png",
 "../../assets/characters/ninja/ninjaL3.png",
@@ -47,6 +48,8 @@ void setup() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   fill(0, 0, 0);
   bg = loadImage("../../assets/backgrounds/level2_without_plat.png");
+  bgPlat = loadImage("../../assets/backgrounds/level2.png")
+  startImage = loadImage("../../assets/screens/Start.png");
 
 // platforms
   platforms.push(new Platform(0, FLOOR, loadImage("../../assets/platforms/plat6.png")));
@@ -83,8 +86,9 @@ void setup() {
 // Player jump
   playerJump = loadImage("../../assets/characters/ninja/ninjaJump.png");
   playerIdle = loadImage("../../assets/characters/ninja/ninjaStanding.png");
+  playerDead = loadImage("../../assets/characters/ninja/deadNinja.png");
 
-  player = new Player(playerRight, playerLeft, playerJump, playerIdle, 10, FLOOR);
+  player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDead, 10, FLOOR);
 }
 
 void draw() {
@@ -93,6 +97,9 @@ void draw() {
   drawPlatforms(platforms);
   drawObjects(objects);
   player.draw();
+  if (gameState == gameStates.START) {
+    image(startImage, 200, 200);
+  }
 }
 
 function calculate() {

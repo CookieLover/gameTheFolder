@@ -2,7 +2,7 @@ var LEFT = 37, UP = 38, RIGHT = 39, DOWN = 40, SPACE = 32;
 var playerIsOnPlatform = false;
 
 // Player movement
-function playerMovement(moveSpeed) {
+function PlayerMovement(moveSpeed) {
   this.movingLeft = false;
   this.movingRight = false;
   this.movingUp = false;
@@ -19,16 +19,17 @@ function Jump(jumpSpeed, jumpDura, jumpStepCount) {
 }
 
 // Player
-function Player(rightImages, leftImages, jumpImage, idleImage, x, y) {
+function Player(rightImages, leftImages, jumpImage, idleImage, deathImage, x, y) {
   this.rightImages = rightImages;
   this.leftImages = leftImages;
   this.jumpImage = jumpImage;
   this.idleImage = idleImage;
+  this.deathImage = deathImage;
 
   GameObject.call(this, x, y - this.rightImages[0].height,
     this.rightImages[0].width, this.rightImages[0].height);
 
-  this.playerMovement = new playerMovement(5);
+  this.playerMovement = new PlayerMovement(5);
   this.jump = new Jump(3, 35, 0);
   this.pImage = this.rightImages[0];
   this.framesLeft = 0;
@@ -37,6 +38,9 @@ function Player(rightImages, leftImages, jumpImage, idleImage, x, y) {
   this.imageDuration = 2;
 
   this.holdingKing = false;
+  this.dead = false;
+  this.deathStep = 0;
+  this.deathDuration = 60;
 
   this.draw = function () {
     for (var i = 0; i < platforms.length; i++) {
@@ -82,10 +86,21 @@ function Player(rightImages, leftImages, jumpImage, idleImage, x, y) {
 
     if (this.framesLeft == this.leftImages.length - 1) {
       this.framesLeft = 0;
-      }
+    }
     if (this.framesRight == this.rightImages.length - 1) {
       this.framesRight = 0;
-      }
+    }
+
+    if (this.deathStep > 0 && this.deathStep <= this.deathDuration) {
+      this.pImage = this.deathImage;
+      this.deathStep++;
+    }
+    else if (this.deathStep > this.deathDuration) {
+      this.dead = false;
+      this.deathStep = 0;
+      this.x = 10;
+      this.y = FLOOR;
+    }
 
     image(this.pImage, this.x, this.y);
   }
@@ -137,6 +152,12 @@ void keyReleased() {
     }
 }
 
+void mouseClicked() {
+  if (gameState == gameStates.START) {
+    gameState = gameStates.PLAYING;
+  }
+}
+
 //Player stop jumpImages
 function stopJump() {
   player.jump.jumping = false;
@@ -145,23 +166,27 @@ function stopJump() {
 
 //Player calculate jumpImages
 function calculateJump() {
-    if (player.jump.jumping) {
-      player.jump.jumpStepCount += 1;
-      if (player.jump.jumpStepCount < player.jump.jumpDura) {
-        player.y -= player.jump.jumpSpeed;
-      } else {
-        stopJump();
+    if (!player.dead) {
+      if (player.jump.jumping) {
+        player.jump.jumpStepCount += 1;
+        if (player.jump.jumpStepCount < player.jump.jumpDura) {
+          player.y -= player.jump.jumpSpeed;
+        } else {
+          stopJump();
+        }
       }
     }
 }
 
 //All player movement
 function calculatePlayerMovement() {
-    if ((player.playerMovement.movingLeft) && (player.x >= LEFT_MARGIN)) {
-      player.x -= player.playerMovement.moveSpeed;
-    }
+    if (!player.dead) {
+      if ((player.playerMovement.movingLeft) && (player.x >= LEFT_MARGIN)) {
+        player.x -= player.playerMovement.moveSpeed;
+      }
 
-    if ((player.playerMovement.movingRight) && (player.right() < SCREEN_WIDTH - RIGHT_MARGIN)) {
-      player.x += player.playerMovement.moveSpeed;
+      if ((player.playerMovement.movingRight) && (player.right() < SCREEN_WIDTH - RIGHT_MARGIN)) {
+        player.x += player.playerMovement.moveSpeed;
+      }
     }
 }
