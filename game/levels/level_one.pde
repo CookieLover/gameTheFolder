@@ -1,7 +1,7 @@
 /* @pjs preload=
 "../../assets/characters/ninja/ninjaStanding.png",
 "../../assets/characters/ninja/ninjaJump.png",
-"../../assets/characters/ninja/deadNinja.png",
+"../../assets/characters/ninja/ninjaDead.png",
 "../../assets/characters/ninja/ninjaL5.png",
 "../../assets/characters/ninja/ninjaL4.png",
 "../../assets/characters/ninja/ninjaL3.png",
@@ -12,10 +12,10 @@
 "../../assets/characters/ninja/ninjaR3.png",
 "../../assets/characters/ninja/ninjaR2.png",
 "../../assets/characters/ninja/ninjaR1.png",
-"../../assets/platforms/plat1.png",
-"../../assets/platforms/plat2.png",
-"../../assets/platforms/plat3.png",
-"../../assets/platforms/plat4.png",
+"../../assets/platforms/L1plat1.png",
+"../../assets/platforms/L1plat2.png",
+"../../assets/platforms/L1plat3.png",
+"../../assets/platforms/L1plat4.png",
 "../../assets/objects/spike.png",
 "../../assets/objects/portal.png"; */
 
@@ -39,11 +39,11 @@ void setup() {
   startImage = loadImage("../../assets/screens/Start.png");
 
 // platforms
-  platforms.push(new Platform(646, 350, loadImage("../../assets/platforms/plat1.png")));
-  platforms.push(new Platform(510, 471, loadImage("../../assets/platforms/plat2.png")));
-  platforms.push(new Platform(564, FLOOR, loadImage("../../assets/platforms/plat3.png")));
-  platforms.push(new Platform(0, FLOOR, loadImage("../../assets/platforms/plat4.png")));
-  platforms.push(new Platform(251, FLOOR, loadImage("../../assets/platforms/plat4.png")));
+  platforms.push(new Platform(646, 350, loadImage("../../assets/platforms/L1plat1.png")));
+  platforms.push(new Platform(510, 471, loadImage("../../assets/platforms/L1plat2.png")));
+  platforms.push(new Platform(564, FLOOR, loadImage("../../assets/platforms/L1plat3.png")));
+  platforms.push(new Platform(0, FLOOR, loadImage("../../assets/platforms/L1plat4.png")));
+  platforms.push(new Platform(251, FLOOR, loadImage("../../assets/platforms/L1plat4.png")));
 
 // objects
   objects.push(new Spikes(loadImage("../../assets/objects/spike.png"), 177, FLOOR));
@@ -66,7 +66,7 @@ void setup() {
 // Player jump
   playerJump = loadImage("../../assets/characters/ninja/ninjaJump.png");
   playerIdle = loadImage("../../assets/characters/ninja/ninjaStanding.png");
-  playerDead = loadImage("../../assets/characters/ninja/deadNinja.png");
+  playerDead = loadImage("../../assets/characters/ninja/ninjaDead.png");
 
   player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDead, 10, FLOOR);
 }
