@@ -36,6 +36,8 @@ function Player(rightImages, leftImages, jumpImage, idleImage, x, y) {
   this.imageStep = 0;
   this.imageDuration = 2;
 
+  this.holdingKing = false;
+
   this.draw = function () {
     for (var i = 0; i < platforms.length; i++) {
       if (isCollide(player, platforms[i])) {
