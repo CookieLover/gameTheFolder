@@ -10,8 +10,10 @@ function Spikes(pImage, x, y) {
   //Spike Collision
   this.calculate = function() {
     if (isCollide(player, this)) {
-      player.x = 10;
-      player.y = FLOOR;
+      if (!player.dead) {
+        player.dead = true;
+        player.deathStep = 1;
+      }
     }
   }
 }

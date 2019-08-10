@@ -10,9 +10,10 @@ function Door(pImage, x, y, nextLevel) {
 
   //If player collides with door, change game state to Win
   this.calculate = function() {
-    if (isCollide(player, this)) {
-      currGameState = gameStates.LEVEL_END;
-      location.assign(this.nextLevel);
+    if (!player.dead) {
+      if (isCollide(player, this)) {
+        location.assign(this.nextLevel);
+      }
     }
   }
 }
