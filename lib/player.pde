@@ -19,28 +19,57 @@ function Jump(jumpSpeed, jumpDura, jumpStepCount) {
 }
 
 // Player
-function Player(rightImages, leftImages, jumpImage, idleImage, deathImage, x, y) {
+function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, deathImageLeft, deathImageStick, x, y) {
   this.rightImages = rightImages;
   this.leftImages = leftImages;
   this.jumpImage = jumpImage;
   this.idleImage = idleImage;
-  this.deathImage = deathImage;
+  this.deathImageRight = deathImageRight;
+  this.deathImageLeft = deathImageLeft;
+  this.deathImageStick = deathImageStick;
 
   GameObject.call(this, x, y - this.rightImages[0].height,
     this.rightImages[0].width, this.rightImages[0].height);
 
   this.playerMovement = new PlayerMovement(5);
   this.jump = new Jump(3, 35, 0);
-  this.pImage = this.rightImages[0];
+  this.playerImage = this.rightImages[0];
   this.framesLeft = 0;
   this.framesRight = 0;
   this.imageStep = 0;
   this.imageDuration = 2;
 
-  this.holdingKing = false;
+  this.carryingFatKing = false;
   this.dead = false;
   this.deathStep = 0;
   this.deathDuration = 60;
+
+  this.fatKingSetup = function (rightImagesKing, leftImagesKing, jumpImageKing, idleImageKing, deathImageKingRight, deathImageKingLeft, deathImageKingStick) {
+    this.rightImagesKing = rightImagesKing;
+    this.leftImagesKing = leftImagesKing;
+    this.jumpImageKing = jumpImageKing;
+    this.idleImageKing = idleImageKing;
+    this.deathImageKingRight = deathImageKingRight;
+    this.deathImageKingLeft = deathImageKingLeft;
+    this.deathImageKingStick = deathImageKingStick;
+  }
+
+  this.carryFatKing = function () {
+    this.carryingFatKing = true;
+    this.y = player.bottom() - playerRightKing[0].height;
+    this.width = playerRightKing[0].width;
+    this.height = playerRightKing[0].height;
+    this.playerMovement.moveSpeed = 3;
+    this.jump.jumpSpeed = 2;
+  }
+
+  this.clearPlayerMovementJump = function () {
+    this.playerMovement.movingLeft = false;
+    this.playerMovement.movingRight = false;
+    this.playerMovement.movingUp = false;
+    this.playerMovement.movingDown = false;
+    this.jump.jumping = false;
+  }
 
   this.draw = function () {
     for (var i = 0; i < platforms.length; i++) {
@@ -53,12 +82,11 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImage, x, y)
     }
 
     if (this.jump.jumping) {
-      this.pImage = jumpImage;
+      this.playerImage = this.carryingFatKing ? this.jumpImageKing : this.jumpImage;
     }
 
-    //the jump image below should be a idle image
     if (player.bottom() == FLOOR || playerIsOnPlatform) {
-      this.pImage = this.idleImage;
+      this.playerImage = this.carryingFatKing ? this.idleImageKing : this.idleImage;
     }
 
     if (this.playerMovement.movingLeft) {
@@ -68,7 +96,7 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImage, x, y)
         this.imageStep = 0;
       }
       if (this.framesLeft < this.leftImages.length) {
-        this.pImage = this.leftImages[this.framesLeft];
+        this.playerImage = this.carryingFatKing ? this.leftImagesKing[this.framesLeft] : this.leftImages[this.framesLeft];
       }
     }
 
@@ -79,10 +107,9 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImage, x, y)
         this.imageStep = 0;
       }
       if (this.framesRight < this.rightImages.length) {
-        this.pImage = this.rightImages[this.framesRight];
+        this.playerImage = this.carryingFatKing ? this.rightImagesKing[this.framesRight] : this.rightImages[this.framesRight];
       }
     }
-
 
     if (this.framesLeft == this.leftImages.length - 1) {
       this.framesLeft = 0;
@@ -92,17 +119,27 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImage, x, y)
     }
 
     if (this.deathStep > 0 && this.deathStep <= this.deathDuration) {
-      this.pImage = this.deathImage;
+      if (this.playerMovement.movingRight) {
+        this.playerImage = this.carryingFatKing ? this.deathImageKingRight : this.deathImageRight;
+      }
+      else if (this.playerMovement.movingLeft) {
+        this.playerImage = this.carryingFatKing ? this.deathImageKingLeft : this.deathImageLeft;
+      }
+      else {
+        this.playerImage = this.carryingFatKing ? this.deathImageKingStick : this.deathImageStick;
+      }
       this.deathStep++;
     }
+
     else if (this.deathStep > this.deathDuration) {
       this.dead = false;
       this.deathStep = 0;
+      this.clearPlayerMovementJump();
       this.x = 10;
       this.y = FLOOR;
     }
 
-    image(this.pImage, this.x, this.y);
+    image(this.playerImage, this.x, this.y);
   }
 }
 Player.prototype = Object.create(GameObject.prototype);
@@ -117,27 +154,30 @@ void keyPressed() {
       playerIsOnPlatform = false;
     }
   }
-  switch (keyCode) {
-    case LEFT:
-        player.playerMovement.movingLeft = true;
-        break;
+  if (!player.dead) {
+    switch (keyCode) {
+      case LEFT:
+          player.playerMovement.movingLeft = true;
+          break;
 
-    case RIGHT:
-        player.playerMovement.movingRight = true;
-        break;
+      case RIGHT:
+          player.playerMovement.movingRight = true;
+          break;
 
-    case SPACE:
-        if ((player.bottom() == FLOOR) || playerIsOnPlatform) {
-          player.jump.jumping = true;
-        }
-        break;
+      case SPACE:
+          if ((player.bottom() == FLOOR) || playerIsOnPlatform) {
+            player.jump.jumping = true;
+          }
+          break;
 
-    default:
-        break;
+      default:
+          break;
     }
+  }
 }
 
 void keyReleased() {
+  if (!player.dead) {
     switch (keyCode) {
       case LEFT:
           player.playerMovement.movingLeft = false;
@@ -150,6 +190,7 @@ void keyReleased() {
       default:
           break;
     }
+  }
 }
 
 void mouseClicked() {

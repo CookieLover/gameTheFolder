@@ -1,7 +1,9 @@
 /* @pjs preload=
 "../../assets/characters/ninja/ninjaStanding.png",
 "../../assets/characters/ninja/ninjaJump.png",
-"../../assets/characters/ninja/ninjaDead.png",
+"../../assets/characters/ninja/ninjaDeadR.png",
+"../../assets/characters/ninja/ninjaDeadL.png",
+"../../assets/characters/ninja/ninjaDeadStick.png",
 "../../assets/characters/ninja/ninjaL5.png",
 "../../assets/characters/ninja/ninjaL4.png",
 "../../assets/characters/ninja/ninjaL3.png",
@@ -32,9 +34,14 @@
 var platforms = new Array();
 var objects = new Array();
 var bg;
+var startImage;
 var playerRight = [];
 var playerLeft = [];
 var playerJump;
+var playerIdle;
+var playerDeadR;
+var playerDeadL;
+var playerDeadStick;
 var player;
 var door;
 
@@ -44,7 +51,6 @@ void setup() {
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   fill(0, 0, 0);
   bg = loadImage("../../assets/backgrounds/level2_without_plat.png");
-  bgPlat = loadImage("../../assets/backgrounds/level2.png")
   startImage = loadImage("../../assets/screens/Start.png");
 
 // platforms
@@ -82,9 +88,11 @@ void setup() {
 // Player jump
   playerJump = loadImage("../../assets/characters/ninja/ninjaJump.png");
   playerIdle = loadImage("../../assets/characters/ninja/ninjaStanding.png");
-  playerDead = loadImage("../../assets/characters/ninja/ninjaDead.png");
+  playerDeadR = loadImage("../../assets/characters/ninja/ninjaDeadR.png");
+  playerDeadL = loadImage("../../assets/characters/ninja/ninjaDeadL.png");
+  playerDeadStick = loadImage("../../assets/characters/ninja/ninjaDeadStick.png");
 
-  player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDead, 10, FLOOR);
+  player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDeadR, playerDeadL, playerDeadStick, 10, FLOOR);
 }
 
 void draw() {
@@ -93,9 +101,7 @@ void draw() {
   drawPlatforms(platforms);
   drawObjects(objects);
   player.draw();
-  if (gameState == gameStates.START) {
-    image(startImage, 200, 200);
-  }
+  startCheck(gameState);
 }
 
 function calculate() {

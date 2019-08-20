@@ -13,6 +13,12 @@ var gameStates = {
 
 var gameState = gameStates.START;
 
+function startCheck(gameState) {
+  if (gameState == gameStates.START) {
+    image(startImage, 200, 200);
+  }
+}
+
 //Gravity
 function calculateGravity() {
   if (player.jump.jumping) {

@@ -1,7 +1,9 @@
 /* @pjs preload=
 "../../assets/characters/ninja/ninjaStanding.png",
 "../../assets/characters/ninja/ninjaJump.png",
-"../../assets/characters/ninja/ninjaDead.png",
+"../../assets/characters/ninja/ninjaDeadR.png",
+"../../assets/characters/ninja/ninjaDeadL.png",
+"../../assets/characters/ninja/ninjaDeadStick.png",
 "../../assets/characters/ninja/ninjaL5.png",
 "../../assets/characters/ninja/ninjaL4.png",
 "../../assets/characters/ninja/ninjaL3.png",
@@ -13,7 +15,27 @@
 "../../assets/characters/ninja/ninjaR2.png",
 "../../assets/characters/ninja/ninjaR1.png",
 "../../assets/characters/ninja/ninjaR1.png",
-"../../assets/characters/newKing.png",
+"../../assets/characters/ninja/ninjaL5.png",
+"../../assets/characters/ninja/ninjaL4.png",
+"../../assets/characters/ninja/ninjaL3.png",
+"../../assets/characters/ninja/ninjaL2.png",
+"../../assets/characters/ninja/ninjaL1.png",
+"../../assets/characters/ninja/ninjaR5.png",
+"../../assets/characters/ninja/ninjaR4.png",
+"../../assets/characters/ninja/ninjaR3.png",
+"../../assets/characters/ninja/ninjaR2.png",
+"../../assets/characters/ninja/ninjaR1.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaL5King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaL4King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaL3King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaL2King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaL1King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaR5King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaR4King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaR3King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaR2King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaR1King.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaR1King.png",
 "../../assets/platforms/L4plat1.png",
 "../../assets/platforms/L4plat2.png",
 "../../assets/platforms/L4plat3.png",
@@ -23,15 +45,22 @@
 "../../assets/platforms/L4Mplat1.png",
 "../../assets/platforms/L4Mplat2.png",
 "../../assets/platforms/L4Mplat3.png",
-"../../assets/platforms/BigFatKing.png",
+"../../assets/platforms/fatKingInCage.png",
 "../../assets/objects/portal.png"; */
 
 var platforms = new Array();
 var objects = new Array();
 var bg;
+var startImage;
 var playerRight = [];
 var playerLeft = [];
+var playerRightKing = [];
+var playerLeftKing = [];
 var playerJump;
+var playerIdle;
+var playerDeadR;
+var playerDeadL;
+var playerDeadStick;
 var player;
 var door;
 
@@ -40,7 +69,9 @@ void setup() {
 // setup canvas
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   fill(0, 0, 0);
-  bg = loadImage("../../assets/backgrounds/level4_without_plat.png");
+  //bg = loadImage("../../assets/backgrounds/level4_without_plat.png");
+  bg = loadImage("../../assets/backgrounds/level4_without_plat(alt).png");
+  startImage = loadImage("../../assets/screens/Start.png");
 
 // platforms
   platforms.push(new Platform(0, FLOOR, loadImage("../../assets/platforms/L4plat1.png")));
@@ -59,8 +90,8 @@ void setup() {
 
 // objects
   objects.push(new Door(loadImage("../../assets/objects/portal.png"), 785, 384, "level_four.html"));
-  //objects.push(new FatKing(loadImage("../../assets/platforms/BigFatKing.png"), 100, 100));
-  platforms.push(new Platform(0, 176, loadImage("../../assets/platforms/BigFatKing.png")));
+  //objects.push(new FatKing(loadImage("../../assets/platforms/fatKingInCage.png"), 100, 100));
+  platforms.push(new Platform(0, 176, loadImage("../../assets/platforms/fatKingInCage.png")));
 
 //Player Right Images
   playerRight[0] = loadImage("../../assets/characters/ninja/ninjaR1.png");
@@ -68,18 +99,38 @@ void setup() {
   playerRight[2] = loadImage("../../assets/characters/ninja/ninjaR3.png");
   playerRight[3] = loadImage("../../assets/characters/ninja/ninjaR4.png");
   playerRight[4] = loadImage("../../assets/characters/ninja/ninjaR5.png");
+
 //Player Left Images
   playerLeft[0] = loadImage("../../assets/characters/ninja/ninjaL1.png");
   playerLeft[1] = loadImage("../../assets/characters/ninja/ninjaL2.png");
   playerLeft[2] = loadImage("../../assets/characters/ninja/ninjaL3.png");
   playerLeft[3] = loadImage("../../assets/characters/ninja/ninjaL4.png");
   playerLeft[4] = loadImage("../../assets/characters/ninja/ninjaL5.png");
+
+//Player Right Images
+  playerRightKing[0] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR1King.png");
+  playerRightKing[1] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR2King.png");
+  playerRightKing[2] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR3King.png");
+  playerRightKing[3] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR4King.png");
+  playerRightKing[4] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR5King.png");
+
+//Player Left Images
+  playerLeftKing[0] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL1King.png");
+  playerLeftKing[1] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL2King.png");
+  playerLeftKing[2] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL3King.png");
+  playerLeftKing[3] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL4King.png");
+  playerLeftKing[4] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL5King.png");
+
 // Player jump
   playerJump = loadImage("../../assets/characters/ninja/ninjaJump.png");
   playerIdle = loadImage("../../assets/characters/ninja/ninjaStanding.png");
-  playerDead = loadImage("../../assets/characters/ninja/ninjaDead.png");
+  playerDeadR = loadImage("../../assets/characters/ninja/ninjaDeadR.png");
+  playerDeadL = loadImage("../../assets/characters/ninja/ninjaDeadL.png");
+  playerDeadStick = loadImage("../../assets/characters/ninja/ninjaDeadStick.png");
 
-  player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDead, 10, FLOOR);
+  player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDeadR, playerDeadL, playerDeadStick, 10, FLOOR);
+  player.fatKingSetup(playerRightKing, playerLeftKing, playerJump, playerIdle, playerDeadR, playerDeadL, playerDeadStick);
+  player.carryFatKing();
 }
 
 void draw() {
@@ -88,6 +139,7 @@ void draw() {
   drawPlatforms(platforms);
   drawObjects(objects);
   player.draw();
+  startCheck(gameState);
 }
 
 function calculate() {

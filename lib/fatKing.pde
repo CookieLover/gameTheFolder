@@ -4,7 +4,7 @@ function FatKing(pImage, x, y) {
   GameObject.call(this, x, y - pImage.height, pImage.width, pImage.height);
 
   this.draw = function() {
-    if (!player.holdingKing) {
+    if (!player.carryingFatKing) {
       image(this.pImage, this.x, this.y);
     }
   }
@@ -12,7 +12,7 @@ function FatKing(pImage, x, y) {
   // Fat King Collision
   this.calculate = function() {
     if (isCollide(player, this)) {
-      bg = loadImage("../../assets/backgrounds/level2_without_plat.png");
+      bg = loadImage("../../assets/backgrounds/level4_without_king.png");
     }*/
   }
 FatKing.prototype = Object.create(GameObject.prototype);
