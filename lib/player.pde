@@ -55,7 +55,6 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
   }
 
   this.carryFatKing = function () {
-    bg = loadImage("../../assets/backgrounds/level4_without_king.png");
     this.carryingFatKing = true;
     this.y = player.bottom() - playerRightKing[0].height;
     this.width = playerRightKing[0].width;

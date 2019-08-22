@@ -25,6 +25,8 @@
 "../../assets/characters/ninja/ninjaR3.png",
 "../../assets/characters/ninja/ninjaR2.png",
 "../../assets/characters/ninja/ninjaR1.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaWithKingJump.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaWithKingIdle.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaL5King.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaL4King.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaL3King.png",
@@ -40,11 +42,12 @@
 "../../assets/platforms/L4plat3.png",
 "../../assets/platforms/L4plat4.png",
 "../../assets/platforms/L4plat5.png",
-"../../assets/platforms/L4plat6.png",
 "../../assets/platforms/L4Mplat1.png",
 "../../assets/platforms/L4Mplat2.png",
 "../../assets/platforms/L4Mplat3.png",
 "../../assets/platforms/fatKingInCage.png",
+"../../assets/platforms/fatKingNotInCage.png",
+"../../assets/objects/spikeLongLong.png",
 "../../assets/objects/portal.png"; */
 
 var platforms = new Array();
@@ -68,27 +71,29 @@ void setup() {
 // setup canvas
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   fill(0, 0, 0);
+  RIGHT_MARGIN = 4;
   bg = loadImage("../../assets/backgrounds/level4_without_plat.png");
   startImage = loadImage("../../assets/screens/Start.png");
 
 // platforms
   platforms.push(new Platform(0, FLOOR, loadImage("../../assets/platforms/L4plat1.png")));
-  platforms.push(new Platform(150, 540, loadImage("../../assets/platforms/L4plat2.png")));
-  platforms.push(new Platform(274, 488, loadImage("../../assets/platforms/L4plat3.png")));
-  platforms.push(new Platform(19, 231, loadImage("../../assets/platforms/L4plat4.png")));
-  platforms.push(new Platform(619, 256, loadImage("../../assets/platforms/L4plat5.png")));
-  platforms.push(new Platform(702, 438, loadImage("../../assets/platforms/L4plat6.png")));
+  platforms.push(new Platform(274, 488, loadImage("../../assets/platforms/L4plat2.png")));
+  platforms.push(new Platform(19, 231, loadImage("../../assets/platforms/L4plat3.png")));
+  platforms.push(new Platform(619, 256, loadImage("../../assets/platforms/L4plat4.png")));
+  platforms.push(new Platform(702, 438, loadImage("../../assets/platforms/L4plat5.png")));
   platforms.push(new Platform(342, 393, loadImage("../../assets/platforms/L4Mplat1.png")));
   platforms.push(new Platform(267, 298, loadImage("../../assets/platforms/L4Mplat2.png")));
   platforms.push(new Platform(487, 330, loadImage("../../assets/platforms/L4Mplat3.png")));
-  platforms[6].movePixels.setup([24, 24, 48, 48, 48, 24, 24], ["D", "L", "U", "R", "D", "L", "U"], 3);
-  platforms[7].movePixels.setup([8, 16, 8], ["L", "R", "L"], 6);
-  platforms[8].movePixels.setup([88, 176, 88], ["U", "D", "U"], 3);
+  platforms[5].movePixels.setup([24, 24, 48, 48, 48, 24, 24], ["D", "L", "U", "R", "D", "L", "U"], 3);
+  platforms[6].movePixels.setup([8, 16, 8], ["L", "R", "L"], 6);
+  platforms[7].movePixels.setup([88, 176, 88], ["U", "D", "U"], 3);
 
 
 // objects
+  objects.push(new Spikes(loadImage("../../assets/objects/spikeLongLong.png"), 100, FLOOR))
   objects.push(new Door(loadImage("../../assets/objects/portal.png"), 785, 384, "level_four.html"));
   objects.push(new FatKing(loadImage("../../assets/platforms/fatKingInCage.png"), 0, 176));
+  objects[0].playerCanEnter = false;
 
 //Player Right Images
   playerRight[0] = loadImage("../../assets/characters/ninja/ninjaR1.png");
@@ -125,8 +130,11 @@ void setup() {
   playerDeadL = loadImage("../../assets/characters/ninja/ninjaDeadL.png");
   playerDeadStick = loadImage("../../assets/characters/ninja/ninjaDeadStick.png");
 
+  playerJumpKing = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaWithKingJump.png");
+  playerIdleKing = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaWithKingIdle.png");
+
   player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDeadR, playerDeadL, playerDeadStick, 10, FLOOR);
-  player.fatKingSetup(playerRightKing, playerLeftKing, playerJump, playerIdle, playerDeadR, playerDeadL, playerDeadStick);
+  player.fatKingSetup(playerRightKing, playerLeftKing, playerJumpKing, playerIdleKing, playerDeadR, playerDeadL, playerDeadStick);
 }
 
 void draw() {
