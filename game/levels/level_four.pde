@@ -35,7 +35,6 @@
 "../../assets/characters/ninjaCarryingFatKing/ninjaR3King.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaR2King.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaR1King.png",
-"../../assets/characters/ninjaCarryingFatKing/ninjaR1King.png",
 "../../assets/platforms/L4plat1.png",
 "../../assets/platforms/L4plat2.png",
 "../../assets/platforms/L4plat3.png",
@@ -69,8 +68,7 @@ void setup() {
 // setup canvas
   size(SCREEN_WIDTH, SCREEN_HEIGHT);
   fill(0, 0, 0);
-  //bg = loadImage("../../assets/backgrounds/level4_without_plat.png");
-  bg = loadImage("../../assets/backgrounds/level4_without_plat(alt).png");
+  bg = loadImage("../../assets/backgrounds/level4_without_plat.png");
   startImage = loadImage("../../assets/screens/Start.png");
 
 // platforms
@@ -90,8 +88,7 @@ void setup() {
 
 // objects
   objects.push(new Door(loadImage("../../assets/objects/portal.png"), 785, 384, "level_four.html"));
-  //objects.push(new FatKing(loadImage("../../assets/platforms/fatKingInCage.png"), 100, 100));
-  platforms.push(new Platform(0, 176, loadImage("../../assets/platforms/fatKingInCage.png")));
+  objects.push(new FatKing(loadImage("../../assets/platforms/fatKingInCage.png"), 0, 176));
 
 //Player Right Images
   playerRight[0] = loadImage("../../assets/characters/ninja/ninjaR1.png");
@@ -130,7 +127,6 @@ void setup() {
 
   player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDeadR, playerDeadL, playerDeadStick, 10, FLOOR);
   player.fatKingSetup(playerRightKing, playerLeftKing, playerJump, playerIdle, playerDeadR, playerDeadL, playerDeadStick);
-  player.carryFatKing();
 }
 
 void draw() {
