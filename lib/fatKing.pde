@@ -11,8 +11,8 @@ function FatKing(pImage, x, y) {
 
   // Fat King Collision
   this.calculate = function() {
-    if (isCollide(player, this.pImage)) {
-      bg = loadImage("../../assets/backgrounds/level4_without_king.png");
+    if (isCollide(player, this) && !player.carryingFatKing) {
+      player.carryFatKing();
     }
   }
 }
