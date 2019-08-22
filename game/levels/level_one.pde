@@ -4,7 +4,7 @@
 "../../assets/characters/ninja/ninjaDeadR.png",
 "../../assets/characters/ninja/ninjaDeadL.png",
 "../../assets/characters/ninja/ninjaDeadAltR.png",
-"../../assets/characters/ninja/ninjaDeadALtL.png",
+"../../assets/characters/ninja/ninjaDeadAltL.png",
 "../../assets/characters/ninja/ninjaDeadStick.png",
 "../../assets/characters/ninja/ninjaL5.png",
 "../../assets/characters/ninja/ninjaL4.png",
