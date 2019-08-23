@@ -12,7 +12,7 @@ function FatKing(pImage, x, y) {
     if (isCollide(player, this) && !player.carryingFatKing) {
       this.pImage = loadImage("../../assets/platforms/fatKingNotInCage.png");
       player.carryFatKing();
-      objects[0].playerCanEnter = true;
+      objects[1].playerCanEnter = true;
     }
   }
 }
