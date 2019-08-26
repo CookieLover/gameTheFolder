@@ -3,6 +3,20 @@
 "../../assets/characters/ninja/ninjaJump.png",
 "../../assets/characters/ninja/ninjaDeadR.png",
 "../../assets/characters/ninja/ninjaDeadL.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaRDead1.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaRDead2.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaRDead3.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaRDead4.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaRDead5.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaRDead6.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaRDead7.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaLDead1.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaLDead2.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaLDead3.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaLDead4.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaLDead5.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaLDead6.png",
+"../../assets/characters/ninjaCarryingFatKing/ninjaLDead7.png",
 "../../assets/characters/ninja/ninjaDeadStick.png",
 "../../assets/characters/ninja/ninjaL5.png",
 "../../assets/characters/ninja/ninjaL4.png",
@@ -62,6 +76,8 @@ var playerJump;
 var playerIdle;
 var playerDeadR;
 var playerDeadL;
+var playerDeadKingR = [];
+var playerDeadKingL = [];
 var playerDeadStick;
 var player;
 var door;
@@ -93,7 +109,7 @@ void setup() {
   objects.push(new Spikes(loadImage("../../assets/objects/spikeLongLong.png"), 100, FLOOR))
   objects.push(new Door(loadImage("../../assets/objects/portal.png"), 785, 384, "level_four.html"));
   objects.push(new FatKing(loadImage("../../assets/platforms/fatKingInCage.png"), 0, 176));
-  objects[0].playerCanEnter = false;
+  objects[1].playerCanEnter = false;
 
 //Player Right Images
   playerRight[0] = loadImage("../../assets/characters/ninja/ninjaR1.png");
@@ -109,19 +125,37 @@ void setup() {
   playerLeft[3] = loadImage("../../assets/characters/ninja/ninjaL4.png");
   playerLeft[4] = loadImage("../../assets/characters/ninja/ninjaL5.png");
 
-//Player Right Images
+//Player With King Right Images
   playerRightKing[0] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR1King.png");
   playerRightKing[1] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR2King.png");
   playerRightKing[2] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR3King.png");
   playerRightKing[3] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR4King.png");
   playerRightKing[4] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaR5King.png");
 
-//Player Left Images
+//Player With King Left Images
   playerLeftKing[0] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL1King.png");
   playerLeftKing[1] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL2King.png");
   playerLeftKing[2] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL3King.png");
   playerLeftKing[3] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL4King.png");
   playerLeftKing[4] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaL5King.png");
+
+//Player With King Right Dead Images
+  playerDeadKingR[0] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaRDead1.png");
+  playerDeadKingR[1] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaRDead2.png");
+  playerDeadKingR[2] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaRDead3.png");
+  playerDeadKingR[3] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaRDead4.png");
+  playerDeadKingR[4] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaRDead5.png");
+  playerDeadKingR[5] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaRDead6.png");
+  playerDeadKingR[6] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaRDead7.png");
+
+//Player With King Left Dead Images
+  playerDeadKingL[0] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaLDead1.png");
+  playerDeadKingL[1] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaLDead2.png");
+  playerDeadKingL[2] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaLDead3.png");
+  playerDeadKingL[3] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaLDead4.png");
+  playerDeadKingL[4] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaLDead5.png");
+  playerDeadKingL[5] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaLDead6.png");
+  playerDeadKingL[6] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaLDead7.png");
 
 // Player jump
   playerJump = loadImage("../../assets/characters/ninja/ninjaJump.png");
@@ -134,7 +168,7 @@ void setup() {
   playerIdleKing = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaWithKingIdle.png");
 
   player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDeadR, playerDeadL, playerDeadStick, 10, FLOOR);
-  player.fatKingSetup(playerRightKing, playerLeftKing, playerJumpKing, playerIdleKing, playerDeadR, playerDeadL, playerDeadStick);
+  player.fatKingSetup(playerRightKing, playerLeftKing, playerJumpKing, playerIdleKing, playerDeadKingR, playerDeadKingL, playerDeadStick);
 }
 
 void draw() {
