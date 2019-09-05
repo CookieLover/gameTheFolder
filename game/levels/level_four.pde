@@ -100,6 +100,7 @@ void setup() {
   platforms.push(new Platform(342, 393, loadImage("../../assets/platforms/L4Mplat1.png")));
   platforms.push(new Platform(267, 298, loadImage("../../assets/platforms/L4Mplat2.png")));
   platforms.push(new Platform(487, 330, loadImage("../../assets/platforms/L4Mplat3.png")));
+  platforms.push(new Platform(150, 540, loadImage("../../assets/platforms/L4Mplat3.png")));
   platforms[5].movePixels.setup([24, 24, 48, 48, 48, 24, 24], ["D", "L", "U", "R", "D", "L", "U"], 3);
   platforms[6].movePixels.setup([8, 16, 8], ["L", "R", "L"], 6);
   platforms[7].movePixels.setup([88, 176, 88], ["U", "D", "U"], 3);
