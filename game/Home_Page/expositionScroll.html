@@ -1,0 +1,37 @@
+<html>
+   <head>
+      <style>
+         .animated {
+            background-image: url(ExpositionScroll.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            width: 100%;
+            height: 4350px;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            animation: mymove 60s infinite;
+            -webkit-animation: mymove 60s;
+         }
+
+         @-webkit-keyframes mymove {
+           from {top: 750px}
+           to {top: -3550px}
+         }
+
+         @keyframes mymove {
+           from {top: 750px}
+           to {top: -3550px}
+         }
+
+         .fadeInUp {
+            -webkit-animation-name: fadeOut;
+            animation-name: fadeOut;
+         }
+      </style>
+   </head>
+
+   <body style = "background-color: black">
+      <div id = "animated-example" class = "animated slideInUp"></div>
+   </body>
+</html>
