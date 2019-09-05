@@ -28,8 +28,7 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
   this.deathImageLeft = deathImageLeft;
   this.deathImageStick = deathImageStick;
 
-  GameObject.call(this, x, y - this.rightImages[0].height,
-    this.rightImages[0].width, this.rightImages[0].height);
+  GameObject.call(this, x, y - this.rightImages[0].height, this.rightImages[0].width, this.rightImages[0].height);
 
   this.playerMovement = new PlayerMovement(5);
   this.jump = new Jump(3, 35, 0);
@@ -42,7 +41,9 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
   this.carryingFatKing = false;
   this.dead = false;
   this.deathStep = 0;
+  this.deathImageChange = [1, 9, 18, 27, 36, 45, 56];
   this.deathDuration = 60;
+  this.deathImageTime = 0;
 
   this.fatKingSetup = function (rightImagesKing, leftImagesKing, jumpImageKing, idleImageKing, deathImageKingRight, deathImageKingLeft, deathImageKingStick) {
     this.rightImagesKing = rightImagesKing;
@@ -55,7 +56,6 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
   }
 
   this.carryFatKing = function () {
-    bg = loadImage("../../assets/backgrounds/level4_without_king.png");
     this.carryingFatKing = true;
     this.y = player.bottom() - playerRightKing[0].height;
     this.width = playerRightKing[0].width;
@@ -73,6 +73,7 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
   }
 
   this.draw = function () {
+    console.log(this.deathImageTime);
     for (var i = 0; i < platforms.length; i++) {
       if (isCollide(player, platforms[i])) {
         playerIsOnPlatform = true;
@@ -121,15 +122,43 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
 
     if (this.deathStep > 0 && this.deathStep <= this.deathDuration) {
       if (this.playerMovement.movingRight) {
-        this.playerImage = this.carryingFatKing ? this.deathImageKingRight : this.deathImageRight;
+        if (this.carryingFatKing) {
+          if (this.deathStep == this.deathImageChange[this.deathImageTime]) {
+            this.deathImageTime++;
+          }
+          else {
+            this.playerImage = this.deathImageKingRight[this.deathImageTime];
+          }
+        }
+          else {
+            this.playerImage = this.deathImageRight;
+        }
       }
       else if (this.playerMovement.movingLeft) {
-        this.playerImage = this.carryingFatKing ? this.deathImageKingLeft : this.deathImageLeft;
+        if (this.carryingFatKing) {
+          if (this.deathStep == this.deathImageChange[this.deathImageTime]) {
+            this.deathImageTime++;
+          }
+          else {
+            this.playerImage = this.deathImageKingLeft[this.deathImageTime];
+          }
+        }
+        else {
+          this.playerImage = this.deathImageLeft;
+        }
       }
       else {
         this.playerImage = this.carryingFatKing ? this.deathImageKingStick : this.deathImageStick;
       }
+
+     if (this.deathImageTime == 7) {
+       this.deathImageTime = 0;
+     }
       this.deathStep++;
+    }
+
+    if (this.deathImageTime == 7) {
+      this.deathImageTime == 0;
     }
 
     else if (this.deathStep > this.deathDuration) {
@@ -139,7 +168,6 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
       this.x = 10;
       this.y = FLOOR;
     }
-
     image(this.playerImage, this.x, this.y);
   }
 }
