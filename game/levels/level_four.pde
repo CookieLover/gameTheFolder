@@ -108,7 +108,7 @@ void setup() {
 
 // objects
   objects.push(new Spikes(loadImage("../../assets/objects/spikeLongLong.png"), 100, FLOOR))
-  objects.push(new Door(loadImage("../../assets/objects/portal.png"), 785, 384, "endScreen.html"));
+  objects.push(new Door(loadImage("../../assets/objects/portal.png"), 785, 384, "level_five.html"));
   objects.push(new FatKing(loadImage("../../assets/platforms/fatKingInCage.png"), 0, 176));
   objects[1].playerCanEnter = false;
 

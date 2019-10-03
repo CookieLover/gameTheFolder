@@ -80,7 +80,7 @@ void setup() {
   playerDeadAltL = loadImage("../../assets/characters/ninja/ninjaDeadAltL.png");
   playerDeadStick = loadImage("../../assets/characters/ninja/ninjaDeadStick.png");
 
-  player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDeadAltR, playerDeadAltL, playerDeadStick, 10, FLOOR);
+  player = new Player(playerRight, playerLeft, playerJump, playerIdle, playerDeadAltR, playerDeadAltL, playerDeadStick, 10, FLOOR - 150);
 }
 
 void draw() {

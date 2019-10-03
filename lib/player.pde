@@ -44,6 +44,8 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
   this.deathImageChange = [1, 9, 18, 27, 36, 45, 56];
   this.deathDuration = 60;
   this.deathImageTime = 0;
+  this.rX = 10;
+  this.rY = FLOOR - 175;
 
   this.fatKingSetup = function (rightImagesKing, leftImagesKing, jumpImageKing, idleImageKing, deathImageKingRight, deathImageKingLeft, deathImageKingStick) {
     this.rightImagesKing = rightImagesKing;
@@ -164,9 +166,10 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
     else if (this.deathStep > this.deathDuration) {
       this.dead = false;
       this.deathStep = 0;
+      this.playerImage = this.carryingFatKing ? this.jumpImageKing : this.jumpImage;
       this.clearPlayerMovementJump();
-      this.x = 10;
-      this.y = FLOOR;
+      this.x = this.rX;
+      this.y = this.rY;
     }
     image(this.playerImage, this.x, this.y);
   }
