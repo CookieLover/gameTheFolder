@@ -74,6 +74,8 @@ var playerRightKing = [];
 var playerLeftKing = [];
 var playerJump;
 var playerIdle;
+var playerJumpKing;
+var playerIdleKing;
 var playerDeadR;
 var playerDeadL;
 var playerDeadKingR = [];

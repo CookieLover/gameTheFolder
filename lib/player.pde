@@ -75,7 +75,6 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
   }
 
   this.draw = function () {
-    console.log(this.deathImageTime);
     for (var i = 0; i < platforms.length; i++) {
       if (isCollide(player, platforms[i])) {
         playerIsOnPlatform = true;
