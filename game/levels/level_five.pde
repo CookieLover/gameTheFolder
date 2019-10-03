@@ -64,10 +64,10 @@ console.log("HELLL)o");
   platforms.push(new Platform(382, FLOOR, loadImage("../../assets/platforms/L5plat1.png")));
   platforms.push(new Platform(403, 469, loadImage("../../assets/platforms/L5plat2.png")));
   platforms.push(new Platform(0, 108, loadImage("../../assets/platforms/L5plat3.png")));
-  platforms.push(new Platform(619, 256, loadImage("../../assets/platforms/L5Mplat1.png")));
-  platforms.push(new Platform(702, 438, loadImage("../../assets/platforms/L5Mplat2.png")));
-  //platforms[3].movePixels.setup([24, 24, 48, 48, 48, 24, 24], ["D", "L", "U", "R", "D", "L", "U"], 3);
-  //platforms[4].movePixels.setup([8, 16, 8], ["L", "R", "L"], 6);
+  platforms.push(new Platform(715, 495, loadImage("../../assets/platforms/L5Mplat1.png")));
+  platforms.push(new Platform(80, 180, loadImage("../../assets/platforms/L5Mplat2.png")));
+  platforms[3].movePixels.setup([100, 100], ["L", "R"], 7);
+  platforms[4].movePixels.setup([15, 25, 15, 25], ["R", "D", "L", "U"], 10);
 
 
 // objects
@@ -76,8 +76,8 @@ console.log("HELLL)o");
   objects.push(new Spikes(loadImage("../../assets/objects/spikeSideSR.png"), 381, 469))
   objects.push(new Spikes(loadImage("../../assets/objects/spikeSideSL.png"), 414, 469))
   objects.push(new Spikes(loadImage("../../assets/platforms/L5lava.png"), 0, FLOOR))
-  objects.push(new Door(loadImage("../../assets/objects/portal.png"), 785, 384, "endScreen.html"));
-  //objects[4].playerCanEnter = false;
+  objects.push(new Door(loadImage("../../assets/objects/portal.png"), 800, 600, "endScreen.html"));
+  objects[5].playerCanEnter = false;
 
 //Player Right Images
   playerRight[0] = loadImage("../../assets/characters/ninja/ninjaR1.png");
