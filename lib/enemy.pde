@@ -38,7 +38,7 @@ function Enemy(rightImages, leftImages, idleImage, x, y, rightBound, leftBound, 
       }
     }
 
-    if (!this.enemyMovement.movingLeft & !this.enemyMovement.movingRight) {
+    if (!this.enemyMovement.movingLeft && !this.enemyMovement.movingRight) {
       this.enemyImage = this.idleImage;
     }
 
@@ -90,7 +90,7 @@ function calculateEnemyLogic(enemy) {
     enemy.enemyMovement.movingRight = true;
   }
 
-  if (player.left() >= enemy.left() & player.right() <= enemy.right()) {
+  if (player.left() >= enemy.left() && player.right() <= enemy.right()) {
     enemy.enemyMovement.movingLeft = false;
     enemy.enemyMovement.movingRight = false;
   }

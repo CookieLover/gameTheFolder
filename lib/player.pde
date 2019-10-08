@@ -168,8 +168,8 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
       this.x = this.rX;
       this.y = this.rY;
     }
-    if (this.deathStep > 0 && this.deathStep <= this.deathDuration) {
-      console.log(this.playerMovement.movingRight);
+
+    if (this.deathStep > 0 && this.deathStep <= this.deathDuration && this.carryingFatKing) {
       image(this.playerImage, this.x, this.y - (this.playerImage.height - this.deathImageKingRight[0].height));
     }
     else {
