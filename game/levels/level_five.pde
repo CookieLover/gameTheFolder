@@ -29,16 +29,6 @@
 "../../assets/characters/ninja/ninjaR2.png",
 "../../assets/characters/ninja/ninjaR1.png",
 "../../assets/characters/ninja/ninjaR1.png",
-"../../assets/characters/ninja/ninjaL5.png",
-"../../assets/characters/ninja/ninjaL4.png",
-"../../assets/characters/ninja/ninjaL3.png",
-"../../assets/characters/ninja/ninjaL2.png",
-"../../assets/characters/ninja/ninjaL1.png",
-"../../assets/characters/ninja/ninjaR5.png",
-"../../assets/characters/ninja/ninjaR4.png",
-"../../assets/characters/ninja/ninjaR3.png",
-"../../assets/characters/ninja/ninjaR2.png",
-"../../assets/characters/ninja/ninjaR1.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaWithKingJump.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaWithKingIdle.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaL5King.png",
@@ -51,6 +41,23 @@
 "../../assets/characters/ninjaCarryingFatKing/ninjaR3King.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaR2King.png",
 "../../assets/characters/ninjaCarryingFatKing/ninjaR1King.png",
+"../../assets/boss/bossL1.png",
+"../../assets/boss/bossL2.png",
+"../../assets/boss/bossL3.png",
+"../../assets/boss/bossL4.png",
+"../../assets/boss/bossL5.png",
+"../../assets/boss/bossL6.png",
+"../../assets/boss/bossL7.png",
+"../../assets/boss/bossL8.png",
+"../../assets/boss/bossR1.png",
+"../../assets/boss/bossR2.png",
+"../../assets/boss/bossR3.png",
+"../../assets/boss/bossR4.png",
+"../../assets/boss/bossR5.png",
+"../../assets/boss/bossR6.png",
+"../../assets/boss/bossR7.png",
+"../../assets/boss/bossR8.png",
+"../../assets/boss/bossIdle.png",
 "../../assets/platforms/L5plat1.png",
 "../../assets/platforms/L5plat2.png",
 "../../assets/platforms/L5plat3.png",
@@ -67,12 +74,15 @@
 
 var platforms = new Array();
 var objects = new Array();
+var enemies = new Array();
 var bg;
 var startImage;
 var playerRight = [];
 var playerLeft = [];
 var playerRightKing = [];
 var playerLeftKing = [];
+var bossRight = [];
+var bossLeft = [];
 var playerJump;
 var playerIdle;
 var playerJumpKing;
@@ -161,6 +171,28 @@ void setup() {
   playerDeadKingL[5] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaLDead6.png");
   playerDeadKingL[6] = loadImage("../../assets/characters/ninjaCarryingFatKing/ninjaLDead7.png");
 
+// Boss right images
+  bossRight[0] = loadImage("../../assets/boss/bossR1.png")
+  bossRight[1] = loadImage("../../assets/boss/bossR2.png")
+  bossRight[2] = loadImage("../../assets/boss/bossR3.png")
+  bossRight[3] = loadImage("../../assets/boss/bossR4.png")
+  bossRight[4] = loadImage("../../assets/boss/bossR5.png")
+  bossRight[5] = loadImage("../../assets/boss/bossR6.png")
+  bossRight[6] = loadImage("../../assets/boss/bossR7.png")
+  bossRight[7] = loadImage("../../assets/boss/bossR8.png")
+
+// Boss right images
+  bossLeft[0] = loadImage("../../assets/boss/bossL1.png")
+  bossLeft[1] = loadImage("../../assets/boss/bossL2.png")
+  bossLeft[2] = loadImage("../../assets/boss/bossL3.png")
+  bossLeft[3] = loadImage("../../assets/boss/bossL4.png")
+  bossLeft[4] = loadImage("../../assets/boss/bossL5.png")
+  bossLeft[5] = loadImage("../../assets/boss/bossL6.png")
+  bossLeft[6] = loadImage("../../assets/boss/bossL7.png")
+  bossLeft[7] = loadImage("../../assets/boss/bossL8.png")
+
+  bossIdle = loadImage("../../assets/boss/bossIdle.png")
+
 // Player jump
   playerJump = loadImage("../../assets/characters/ninja/ninjaJump.png");
   playerIdle = loadImage("../../assets/characters/ninja/ninjaStanding.png");
@@ -175,6 +207,8 @@ void setup() {
   player.fatKingSetup(playerRightKing, playerLeftKing, playerJumpKing, playerIdleKing, playerDeadKingR, playerDeadKingL, playerDeadStick);
   player.carryFatKing();
   player.rY = 0;
+
+  enemies.push(new Enemy(bossRight, bossLeft, bossIdle, 600, 600, 770, 436, 2));
 }
 
 void draw() {
@@ -182,6 +216,7 @@ void draw() {
   image(bg);
   drawPlatforms(platforms);
   drawObjects(objects);
+  drawEnemies(enemies);
   player.draw();
   startCheck(gameState);
 }
@@ -191,6 +226,7 @@ function calculate() {
     calculatePlayerMovement();
     calculateJump();
     calculateGravity();
+    calculateEnemies(enemies);
     calculatePlatforms(platforms);
     calculateObjects(objects);
 }
