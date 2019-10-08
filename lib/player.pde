@@ -125,19 +125,21 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
       if (this.playerMovement.movingRight) {
         if (this.carryingFatKing) {
           if (this.deathStep == this.deathImageChange[this.deathImageTime]) {
+            this.playerImage = this.deathImageKingRight[this.deathImageTime];
             this.deathImageTime++;
           }
           else {
             this.playerImage = this.deathImageKingRight[this.deathImageTime];
           }
         }
-          else {
-            this.playerImage = this.deathImageRight;
+        else {
+          this.playerImage = this.deathImageRight;
         }
       }
       else if (this.playerMovement.movingLeft) {
         if (this.carryingFatKing) {
           if (this.deathStep == this.deathImageChange[this.deathImageTime]) {
+            this.playerImage = this.deathImageKingLeft[this.deathImageTime];
             this.deathImageTime++;
           }
           else {
@@ -158,10 +160,6 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
       this.deathStep++;
     }
 
-    if (this.deathImageTime == 7) {
-      this.deathImageTime == 0;
-    }
-
     else if (this.deathStep > this.deathDuration) {
       this.dead = false;
       this.deathStep = 0;
@@ -170,7 +168,13 @@ function Player(rightImages, leftImages, jumpImage, idleImage, deathImageRight, 
       this.x = this.rX;
       this.y = this.rY;
     }
-    image(this.playerImage, this.x, this.y);
+    if (this.deathStep > 0 && this.deathStep <= this.deathDuration) {
+      console.log(this.playerMovement.movingRight);
+      image(this.playerImage, this.x, this.y - (this.playerImage.height - this.deathImageKingRight[0].height));
+    }
+    else {
+      image(this.playerImage, this.x, this.y);
+    }
   }
 }
 Player.prototype = Object.create(GameObject.prototype);
