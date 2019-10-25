@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Python 101 Quiz</title>
+
+    <style>
+      .div {
+        padding: 2px 10px;
+        width: 350px;
+        border-style: solid;
+        margin: 10px;
+      }
+
+      .header {
+        font-size: 35px;
+      }
+
+      .paragraph {
+        font-size: 25px;
+      }
+
+      .questions {
+        position: relative;
+      }
+
+      #questionDiv {
+        position: absolute;
+        top: 0px;
+        left: 400px;
+      }
+
+      input {
+        font-style: italic;
+      }
+
+      a {
+        font-size: 30px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <!--Task div-->
+    <div class = "div">
+      <h1 class = "header">Task:</h1>
+      <p class = "paragraph">
+        Arian the postman is delivering packages. Unfortunately, Arian is a very choosy postman.
+        He will only deliver packages to houses who's colour is the same as his favourite colour.<br><br>
+        Given a list of colours, create a new list containing the strings "D" (Delivered) or "ND" (Not delivered) based
+        on Arian's favourite colour.
+      </p>
+    </div>
+
+    <!--Instructions div-->
+    <div class = "div">
+      <h1 class = "header">Instructions:</h1>
+      <p class = "paragraph">
+        - You will be given two lists. One containing a list of colours of the
+         house and the other a list of Arian's favourite colours<br><br>
+        - The elements in the colour list will be strings<br><br>
+        - Arian's favourite colour is given as a string
+      </p>
+    </div>
+
+    <!--Example div-->
+    <div class = "div">
+      <h1 class = "header">Example</h1>
+      <p class = "paragraph">
+        - Houses: ['red', 'blue', 'black', 'red']<br>
+        - Favourite colour: 'red'<br>
+        - Answer: ['D', 'ND', 'ND', 'D']
+      </p>
+    </div>
+
+    <!--Questions-->
+    <div id = "questionDiv">
+      <div class = "questions div">
+        <b><p class = "paragraph">
+          Favourite Colour: 'yellow'<br><br>
+          Houses: ['green', 'yellow', 'orange', 'yellow', 'orange']
+        </p></b>
+        <p class = "paragraph">Your answer:<br></p>
+        <input type = "text" id = "answer1" value = "Put your answer in here">
+        <button id="myBtn1" onclick="myFunction('answer1', '[\'ND\', \'D\', \'ND\', \'D\', \'ND\']', 'myBtn1')">Submit</button>
+      </div>
+
+      <div class = "questions div">
+        <b><p class = "paragraph">
+          Favourite Colour: 'pink'<br><br>
+          Houses: ['cyan', 'brown', 'magenta', 'pink', 'magenta', 'cyan', 'brown', 'grey', 'magenta', 'brown']
+        </p></b>
+        <p class = "paragraph">Your answer:<br></p>
+        <input type = "text" id = "answer2" value = "Put your answer in here">
+        <button id="myBtn2" onclick="myFunction('answer2', '[\'ND\', \'ND\', \'ND\', \'D\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\']', 'myBtn2')">Submit</button>
+      </div>
+
+      <div class = "questions div">
+        <b><p class = "paragraph">
+          Favourite Colour: 'black'<br><br>
+          Houses: ['blue', 'black', 'green', 'blue', 'orange', 'orange', 'black', 'blue', 'orange', 'turquoise', 'blue', 'black', 'blue', 'black', 'blue']
+        </p></b>
+        <p class = "paragraph">Your answer:<br></p>
+        <input type = "text" id = "answer3" value = "Put your answer in here">
+        <button id="myBtn3" onclick="myFunction('answer3', '[\'ND\', \'D\', \'ND\', \'ND\', \'ND\', \'ND\', \'D\', \'ND\', \'ND\', \'ND\', \'ND\', \'D\', \'ND\', \'D\', \'ND\']', 'myBtn3')">Submit</button>
+      </div>
+
+      <div class = "questions div">
+        <b><p class = "paragraph">
+          Favourite Colour: 'white'<br><br>
+          Houses: ['black', 'blue', 'neon pink', 'dark green', 'blue', 'white', 'black', 'neon pink', 'dark green', 'black', 'black', 'olive', 'olive', 'white', 'neon pink', 'black', 'white', 'blue', 'blue', 'blue']
+        </p></b>
+        <p class = "paragraph">Your answer:<br></p>
+        <input type = "text" id = "answer4" value = "Put your answer in here">
+        <button id="myBtn4" onclick="myFunction('answer4', '[\'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'D\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'D\', \'ND\', \'ND\', \'D\', \'ND\', \'ND\', \'ND\']', 'myBtn4')">Submit</button>
+      </div>
+
+      <div class = "questions div">
+        <b><p class = "paragraph">
+          Favourite Colour: 'lime green'<br><br>
+          Houses: ['peach', 'forest green', 'forest green', 'orange', 'beige', 'beige', 'forest green', 'sea blue', 'lime green', 'beige', 'white', 'forest green', 'lime green', 'beige', 'orange', 'scarlet red', 'lime green', 'orange', 'beige', 'lime green', 'forest green', 'peach', 'orange', 'sea blue', 'scarlet red', 'orange', 'white', 'sea blue', 'neon pink', 'neon pink']
+        </p></b>
+        <p class = "paragraph">Your answer:<br></p>
+        <input type = "text" id = "answer5" value = "Put your answer in here">
+        <button id="myBtn5" onclick="myFunction('answer5', '[\'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'D\', \'ND\', \'ND\', \'ND\', \'D\', \'ND\', \'ND\', \'ND\', \'D\', \'ND\', \'ND\', \'D\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\', \'ND\']', 'myBtn5')">Submit</button>
+      </div>
+    </div>
+
+    <!--Continue to next question-->
+    <div class = "div">
+      <h1 class = "header">Click link below to go to next questions (only click when finished)</h1>
+      <a href="Python101Quiz2.html">Next Quiz!</a>
+    </div>
+
+    <script>
+    function myFunction(idOfElem, correctAnswer, buttonId) {
+      var input = document.getElementById(idOfElem).value;
+      if (input == correctAnswer) {
+        alert("Correct!");
+        document.getElementById(buttonId).disabled = true;
+      } else {
+        alert("Wrong answer. Try again!");
+      }
+    }
+    </script>
+  </body>
+</html>
