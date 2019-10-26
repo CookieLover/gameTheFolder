@@ -1,0 +1,41 @@
+#This is a var (variable). Variables are like boxes. They can contain many things
+#There are many different types of variables. These are some of the important ones
+
+#Integer can be any number
+integer = 6
+
+#Strings can be any character including numbers. "Example"
+string = "Hello World"
+
+#Lists can be thought of as a queue of items (elements)
+lst = ["1", "hello", "apple"]
+
+#An If is something that tests whether something is True or false using logical operators
+#The expression 3 > 4 would get the result False
+
+number = 5
+
+#If the number is larger than 3, it will print True
+if number < 3:
+    print("True")
+#If the statement above is false, than it will print False
+else:
+    print("False")
+
+#Loops will repeatedly run code until a condition is met
+#There are two types of loops. For loops are the most common
+#A for loop will keep running until a condition is met
+
+#The variable is set inside the for loop
+#range(3) means that the variable i will start at 0 and continue while i < 3
+#Every time the code is runs, it will increment i by 1
+for i in range(3):
+    print("Hello!", str(i))
+
+#For loops can also perform an action for every element in a list
+
+lst = ["Hello", "World", "!"]
+
+#This loop will go through every element in a list and print it to the console one by one
+for i in lst:
+	print(i)
