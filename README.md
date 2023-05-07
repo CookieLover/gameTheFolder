@@ -1,5 +1,5 @@
 # Justice Castle 🏯
-In this game, you play Yusha the virtuous ninja, who is the best friend of Fusei, the evil ninja. </br>
+In this game, you play as Yusha the virtuous ninja, who is the best friend of Fusei, the evil ninja. </br>
 
 ## Story
 Years ago, Fusei's brother was framed for murder. Thankfully, the court decided to dismiss him. </br>
@@ -9,6 +9,9 @@ When Fusei received the news, he made it his mission to capture the Prince and s
 
 The Prince, now the King, has been captured and locked up in the _Justice Castle_. </br>
 Can you, Yusha the virtuous ninja, save the King and stop his friend from making more mistakes? </br>
+
+# Technology
+* Built from scratch with [Processing.js](https://github.com/processing-js/processing-js) ([Archived](https://happycoding.io/tutorials/processing/processing-js))
 
 # Contributors
 * [Adam Alimi](https://github.com/CookieLover) </br>
